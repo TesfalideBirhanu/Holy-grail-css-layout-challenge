@@ -1,0 +1,269 @@
+/*
+==============================
+SHARED CSS
+==============================
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: "Dosis", sans-serif;
+  color: #1e4040;
+}
+header,
+footer {
+  background-color: #1e4040;
+  color: #71d99e;
+}
+a {
+  color: #71d99e;
+}
+main,
+aside {
+  padding: 20px 5%;
+}
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+p {
+  margin-bottom: 15px;
+}
+img {
+  border-radius: 5px;
+  box-shadow: 1 px 2px 3px 1px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+}
+/*
+==============================
+CSS OUTER GRID STYLES
+==============================
+*/
+.outer-grid {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 90px 1fr;
+  grid-template-areas:
+    "alias-header alias-header"
+    "alias-inner alias-inner";
+}
+.outer-grid-expand {
+  grid-template-areas:
+    "alias-header alias-header"
+    "alias-nav alias-inner";
+}
+
+.hide-nav {
+  display: none;
+}
+header {
+  grid-area: alias-header;
+}
+#icon:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+nav {
+  grid-area: alias-nav;
+  padding-top: 20px;
+  padding-top: 20px;
+}
+/*
+==============================
+CSS INNER GRID STYLES
+==============================
+*/
+
+.inner-grid {
+  overflow-y: scroll;
+  display: grid;
+  grid-area: alias-inner;
+
+  grid-template-rows: 1fr auto 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    " alias-main alias-main"
+    " alias-aside alias-aside"
+    "alias-footer alias-footer";
+}
+main {
+  grid-area: alias-main;
+}
+aside {
+  grid-area: alias-aside;
+}
+footer {
+  grid-area: alias-footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+footer p {
+  margin: 0;
+}
+/*
+==============================
+CSS HEADER STYLES
+==============================
+*/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.left-header {
+  display: flex;
+  align-items: center;
+}
+#icon {
+  margin-right: 10px;
+}
+.right-header {
+  display: flex;
+  align-items: center;
+}
+.link-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+}
+.link-header,
+i {
+  font-size: 0.8rem;
+}
+/*
+==============================
+CSS NAV STYLES
+==============================
+*/
+nav {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.link-nav:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.link-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+.link-nav a {
+  color: #1e4040;
+}
+/*
+==============================
+CSS NAV STYLES
+==============================
+*/
+aside {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/*
+==============================
+CSS COLLAGE STYLES
+==============================
+*/
+
+.collage {
+  height: 520px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 40px 1fr 40px 1fr;
+  align-items: center;
+}
+.collage * {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.collage-1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  z-index: 1;
+  transform: rotate(-3deg);
+}
+.collage-2 {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  z-index: 2;
+  box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.5);
+}
+.collage-3 {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  z-index: 1;
+  transform: rotate(3deg);
+}
+
+/*
+==============================
+BREAKPOINTS
+==============================
+*/
+
+@media (min-width: 576px) {
+  aside {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .hide-nav {
+    display: block;
+  }
+  .outer-grid {
+    grid-template-areas:
+      "alias-header alias-header"
+      "alias-nav alias-inner";
+  }
+  #icon {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .inner-grid {
+    display: grid;
+    grid-area: alias-inner;
+
+    grid-template-rows: 1fr 60px;
+    grid-template-columns: minmax(auto, 700px);
+    grid-template-areas:
+      " alias-main alias-aside"
+      " alias-footer alias-footer";
+  }
+}
+@media (min-width: 1440px) {
+  .outer-grid {
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas:
+      "alias-header alias-header alias-header"
+      "alias-nav alias-inner alias-inner";
+  }
+
+  header {
+    display: grid;
+    /* grid-auto-flow: column; */
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas: "alias-lh . alias-rh";
+  }
+  .left-header {
+    grid-area: alias-lh;
+    justify-self: end;
+  }
+  .right-header {
+    grid-area: alias-rh;
+    justify-self: start;
+  }
+  .link-nav {
+    display: flex !important;
+    align-items: flex-end;
+    padding-right: 15px;
+  }
+}
